@@ -1,0 +1,34 @@
+.dialogs{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    grid-gap:20px;
+}
+.dialogs h2{
+    grid-column-start: 1;
+    grid-column-end:4;
+
+    font-size:30px;
+    color:#ffffff;
+    margin-top:20px;
+    margin-left:20px;
+    margin-bottom:30px;
+
+}
+
+.all_chats{
+    grid-column-start:1;
+    grid-column-end:2;
+    background-color:#ffffff;
+    border-radius:20px;
+    overflow: hidden;
+}
+
+
+.chat{
+    grid-column-start:2;
+    grid-column-end:4;
+    background-color:#ffffff;
+    border-radius:20px;
+    padding:25px;
+}
+

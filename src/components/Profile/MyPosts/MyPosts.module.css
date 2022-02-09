@@ -1,0 +1,22 @@
+.MyPosts{
+
+
+}
+
+.h2{
+    margin-bottom:30px;
+}
+
+.textarea{
+    width:100%;
+    height:125px;
+}
+
+.button{
+    margin-top:20px;
+    padding:7px 12px;
+    border-radius:20px;
+    font-size:24px;
+    color:#000;
+    background-color:#D8DBF8;
+}
