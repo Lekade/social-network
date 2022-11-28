@@ -8,7 +8,22 @@
     height: 250px;
 }
 
-.photo{
+.photoUser{
     width:200px;
     height:200px;
+}
+.textInfo{
+
+}
+
+.status {
+    width:100%;
+}
+.statusInput{
+    width:100%;
+}
+
+.statusBlock{
+    display:flex;
+    width:100%;
 }

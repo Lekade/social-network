@@ -1,0 +1,38 @@
+.usersContainer{
+    width:80%;
+    margin: 0 auto;
+}
+.userItom{
+    display:flex;
+    background-color:#fff;
+    margin:20px auto 10px;
+    padding:15px;
+}
+.userPhoto{
+    width:30%;
+}
+
+.userPhoto img{
+    width:100px;
+    height:100px;
+}
+.userInfo{
+    width:70%;
+    display:flex;
+}
+
+.userInfo .userIngoInner{
+    width:50%
+}
+
+.userInfo .userIngoInner div{
+    margin-bototm:30px;
+}
+
+.pagination{
+    display:felx;
+}
+
+.paginationActive{
+    font-weight: bold;
+}
