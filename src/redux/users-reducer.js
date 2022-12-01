@@ -1,4 +1,5 @@
 import {userAPI} from "../api/api";
+import {updateObjectInArray} from "../utils/object-helpers";
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = ' UNFOLLOW';
@@ -22,25 +23,14 @@ let initialState = {
 const usersReducer = (state = initialState, action) => {
     switch (action.type) {
         case   FOLLOW:
-
             return {
                 ...state,
-                users: state.users.map(u => {
-                    if(u.id === action.userId){
-                        return  {...u, followed:true}
-                    }
-                    return u;
-                })
-            }
+                users: updateObjectInArray(state.users, action.userId, "id", {followed:true})
+                }
         case   UNFOLLOW:
             return {
                 ...state,
-                users: state.users.map(u => {
-                    if(u.id === action.userId){
-                        return  {...u, followed:false}
-                    }
-                    return u;
-                })
+                users: updateObjectInArray(state.users, action.userId, "id", {followed:false})
             }
         case SET_USERS:
             return {
@@ -52,7 +42,7 @@ const usersReducer = (state = initialState, action) => {
             }
         case SET_USER_COUNT:
             return {
-                ...state, totalUserscount: action.quantityUsers - 21600
+                ...state, totalUserscount: action.quantityUsers - 21770
             }
         case SET_TOTAL_USERS_COUNT:
             return {
@@ -66,11 +56,16 @@ const usersReducer = (state = initialState, action) => {
                 [...state.expectationFollowedUsersId, action.userId]
                 : state.expectationFollowedUsersId.filter(userId => userId != action.userId)
             }
-
         default:
              return state;
     }
+}
 
+const followedUser = async (id, apiMethod, actionCreater, dispatch) => {
+    dispatch(setExpectationFollowed(true, id))
+    const data = await apiMethod(id)
+    if(data.resultCode == 0){dispatch(actionCreater(id))}
+    dispatch(setExpectationFollowed(false, id))
 }
 
 export const followSuccess = (userId) => ({type:FOLLOW, userId})
@@ -81,31 +76,21 @@ export const setQuantityUsers = (quantityUsers) => ({type:SET_USER_COUNT, quanti
 export const setTotalUserCount = (fetchingCount) => ({type:SET_TOTAL_USERS_COUNT, fetchingCount})
 export const setExpectationFollowed = (expectation, userId) => ({type:EXPECTATION_FOLLOWED, expectation, userId})
 
-export const getUsersTK = (currentPage, pageSize) => (dispatch) =>{
+export const getUsersTK = (currentPage, pageSize) => async (dispatch) =>{
         dispatch(setPageNumber(currentPage))
         dispatch(setTotalUserCount(true))
-    userAPI.getUsers(currentPage, pageSize).then( data => {
+        const data = await userAPI.getUsers(currentPage, pageSize)
         dispatch(setTotalUserCount(false))
         dispatch(setUsers(data.items))
         dispatch(setQuantityUsers(data.totalCount))
-    });
 }
 
 export const follow = (id) => (dispatch) => {
-    dispatch(setExpectationFollowed(true, id))
-    userAPI.follow(id).then(data =>
-    {if(data.resultCode == 0){dispatch(followSuccess(id))}
-        dispatch(setExpectationFollowed(false, id))
-    })
+    followedUser(id, userAPI.follow.bind(userAPI), followSuccess, dispatch)
 }
 
 export const unFollow = (id) => (dispatch) => {
-    dispatch(setExpectationFollowed(true, id))
-    userAPI.unFollow(id).then(data =>
-    {if(data.resultCode == 0){dispatch(unfollowSuccess(id))}
-        dispatch(setExpectationFollowed(false, id))
-    })
+    followedUser(id, userAPI.unFollow.bind(userAPI), unfollowSuccess, dispatch)
 }
-
 
 export default usersReducer;

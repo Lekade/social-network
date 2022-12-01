@@ -1,24 +1,23 @@
 import React, {createRef} from 'react';
-import s from './MyPosts.module.css'
+import style from './MyPosts.module.css'
 import Post from "./Post/Post";
 import {Field, reduxForm} from "redux-form";
 import {maxLengthCreator, required} from "../../../utils/validators/validators";
 import {Textarea} from "../../common/FormsControl/FormsControl";
 
-const MyPosts = (props) =>{
+const MyPosts = ({posts, addPost}) =>{
 
-    let PostsElement = props.posts.map(
+    let PostsElement = posts.map(
         p => <Post message={p.message} likesCount={p.likesCount}/>
     );
 
     let onSubmit = (value) => {
-        console.log(value)
-        props.addPost(value.newPost)
+        addPost(value.newPost)
     }
 
     return(
-        <div className={s.MyPosts}>
-            <h2 className={s.h2}>My posts</h2>
+        <div className={style.MyPosts}>
+            <h2 className={style.h2}>My posts</h2>
             <MyPostReduxForm onSubmit={onSubmit}/>
             {PostsElement}
         </div>
@@ -32,11 +31,10 @@ const MyPostForm = (props) => {
         <form onSubmit={props.handleSubmit}>
             <div>
                 <Field  name={"newPost"} component={Textarea}
-                        validate={[required, maxLength]}
-                />
+                        validate={[required, maxLength]}/>
             </div>
             <div>
-                <button className={s.button}>Send</button>
+                <button className={style.button}>Send</button>
             </div>
         </form>
     )

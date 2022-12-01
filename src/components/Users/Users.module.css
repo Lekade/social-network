@@ -28,11 +28,3 @@
 .userInfo .userIngoInner div{
     margin-bototm:30px;
 }
-
-.pagination{
-    display:felx;
-}
-
-.paginationActive{
-    font-weight: bold;
-}

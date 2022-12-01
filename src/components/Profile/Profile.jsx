@@ -4,8 +4,6 @@ import Profileinfo from "./Profileinfo/Profileinfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
 const Profile = (props) =>{
-
-
     return(
 
         <div className={s.profile}>

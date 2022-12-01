@@ -1,6 +1,6 @@
 import React from "react"
 import {Field, reduxForm} from "redux-form";
-import {Input} from "../common/FormsControl/FormsControl";
+import {createField, Input} from "../common/FormsControl/FormsControl";
 import {required} from "../../utils/validators/validators";
 import {Navigate, NavLink} from "react-router-dom";
 import style from "./Login.module.css"
@@ -18,27 +18,9 @@ const LoginForm = (props) => {
     return (
 
           <form onSubmit={props.handleSubmit}>
-            <div>
-                <Field placeholder={"Email"}
-                       name={"email"}
-                       component={Input}
-                       validate={[required]}
-                />
-            </div>
-            <div>
-                <Field placeholder={"Password"}
-                       name={"password"}
-                       type={"password"}
-                       component={Input}
-                       validate={[required]}
-                />
-            </div>
-            <div>
-                <Field component={"input"}
-                       name={"rememberMe"}
-                       type={"checkbox"}
-                /> remember me
-            </div>
+                {createField("Email", "email", Input, [required])}
+                {createField("Password", "password", Input, [required], {type:"password"})}
+                {createField(null, "rememberMe", Input, [], {type:"checkbox"}, "remember me")}
 
               { props.error &&
                   <div className={style.commonError}>
@@ -54,5 +36,4 @@ const LoginForm = (props) => {
 }
 
 const LoginReduxForm = reduxForm({form: 'login'})(LoginForm)
-
 export default Login;

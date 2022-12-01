@@ -16,11 +16,7 @@ import {
     getUsers
 } from "../../redux/users-selectors";
 
-
-
 class UsersContainer extends React.Component{
-
-
     componentDidMount() {
         this.props.getUsersTK(this.props.currentPage, this.props.pageSize)
     }
@@ -47,7 +43,6 @@ class UsersContainer extends React.Component{
             unFollow={this.props.unFollow}
         />
         </>
-
     }
 }
 
@@ -60,7 +55,6 @@ let mapStateToProps = (state) => ({
         expectationFollowedUsersId:getExpectationFollowedUsersId(state)
 
 })
-
 
 export default connect(mapStateToProps, {
     followSuccess,  unfollowSuccess, setExpectationFollowed, getUsersTK, follow, unFollow

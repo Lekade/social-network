@@ -1,0 +1,13 @@
+
+.pagination{
+    display:flex;
+}
+
+.pagination span{
+    cursor: pointer;
+    padding: 1px;
+}
+
+.paginationActive{
+    font-weight: bold;
+}
