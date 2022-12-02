@@ -34,7 +34,7 @@ class ProfileStatus extends React.Component{
     render() {
         return <div className={style.statusBlock}>
             <div>Status :</div>
-            {!this.state.editMode && <div> <div className={style.status} onClick={this.activeEditMode.bind(this)}>{this.props.status || 'The status is missing'}</div></div>}
+            {!this.state.editMode && <div> <span className={style.status} onClick={this.activeEditMode.bind(this)}>{this.props.status || 'The status is missing'}</span></div>}
             {this.state.editMode && <div><input className={style.statusInput} autoFocus={true} value={this.state.status} onChange={this.onChangeStatus} onBlur={this.disabledEditMode.bind(this)} type="text"/></div>}
         </div>
     }
