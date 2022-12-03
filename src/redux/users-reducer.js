@@ -12,8 +12,8 @@ const EXPECTATION_FOLLOWED = 'EXPECTATION_FOLLOWED';
 
 let initialState = {
     users:[ ],
-    pageSize:5,
-    totalUserscount: 0,
+    pageSize:10,
+    totalUsersCount: 0,
     currentPage:1,
     isFetching:false,
     expectationFollowedUsersId:[]
@@ -42,7 +42,7 @@ const usersReducer = (state = initialState, action) => {
             }
         case SET_USER_COUNT:
             return {
-                ...state, totalUserscount: action.quantityUsers - 21770
+                ...state, totalUsersCount: action.quantityUsers
             }
         case SET_TOTAL_USERS_COUNT:
             return {

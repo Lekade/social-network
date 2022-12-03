@@ -12,7 +12,7 @@ import {
     getExpectationFollowedUsersId,
     getIsFetching,
     getPageSize,
-    gettoTalUserscount,
+    gettoTalUsersCount,
     getUsers
 } from "../../redux/users-selectors";
 
@@ -30,7 +30,7 @@ class UsersContainer extends React.Component{
          <Preloader isFetching={this.props.isFetching}/>
 
         <Users
-            totalUserscount={this.props.totalUserscount}
+            totalUsersCount={this.props.totalUsersCount}
             pageSize={this.props.pageSize}
             currentPage={this.props.currentPage}
             changePageNumber={this.changePageNumber}
@@ -49,7 +49,7 @@ class UsersContainer extends React.Component{
 let mapStateToProps = (state) => ({
         users: getUsers(state),
         pageSize: getPageSize(state),
-        totalUserscount:gettoTalUserscount(state),
+        totalUsersCount:gettoTalUsersCount(state),
         currentPage:getCurrentPage(state),
         isFetching:getIsFetching(state),
         expectationFollowedUsersId:getExpectationFollowedUsersId(state)

@@ -1,13 +1,27 @@
 
 .pagination{
     display:flex;
+    justify-content: center;
 }
 
 .pagination span{
+    padding: 2px 3px;
+    border-radius: 5px;
+    margin: 7px;
     cursor: pointer;
-    padding: 1px;
+    background-color:#fff;
 }
 
-.paginationActive{
+.pagination span.paginationActive{
     font-weight: bold;
+    border: solid 2px black;
+}
+
+.buttonPortion{
+    padding:6px;
+    border-radius:5px;
+    background-color:#fff;
+    color:black;
+    border:none;
+    cursor: pointer;
 }
