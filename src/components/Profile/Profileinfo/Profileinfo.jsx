@@ -3,14 +3,23 @@ import style from './Profileinfo.module.css'
 import Preloader from "../../common/Preloader/Preloader";
 import ProfileStatus from "./ProfileStatusWithHooks";
 
-const Profileinfo = ({profileData,  status, updateStatus}) =>{
+const Profileinfo = ({profileData,  status, updateStatus, idOwner, savePhoto}) =>{
+
+        let changePhoto = (e) => {
+            if(e.target.files.length){
+                 savePhoto(e.target.files[0])
+            }
+        }
+
         if(!profileData){
             return <Preloader/>
         }else{
           return  <div className={style.profileinfo}>
                 <img className={style.profile_image} src="https://w-dog.ru/wallpapers/0/15/435643165576258/most-reka-zolotye-vorota-san-francisko.jpg" alt="image"/>
+              {idOwner}
                 <div className={style.content}>
                     <img className={style.photoUser} src={profileData.photos.large} alt="photo"/>
+                    {idOwner && <input type={"file"} onChange={changePhoto}/>}
                     <div>{profileData.fullName}</div>
                     <ProfileStatus status={status} updateStatus={updateStatus}/>
                 </div>
