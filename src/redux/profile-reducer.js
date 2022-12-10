@@ -1,4 +1,5 @@
 import {profileAPI} from "../api/api";
+import {stopSubmit} from "redux-form";
 
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
@@ -51,26 +52,39 @@ export const setStatus = (status) => ({type:SET_STATUS, status})
 export const savePhotoSuccess = (photos) => ({type:SAVE_PHOTO_SUCCESS, photos})
 
 export const getUserProfile = (profileId) => async(dispatch) => {
-    const data = await profileAPI.getProfile(profileId);
-        dispatch(setUserProfile(data));
+    const response = await profileAPI.getProfile(profileId);
+    dispatch(setUserProfile(response.data));
 }
 
 export const getStatus = (userId) => async(dispatch) => {
-    const data = await profileAPI.getStatus(userId);
-        dispatch(setStatus(data));
+    const response = await profileAPI.getStatus(userId);
+    dispatch(setStatus(response.data));
 }
 
 export const updateStatus = (status) => async(dispatch) => {
-    const data = await profileAPI.updateStatus(status);
-        if(data.resultCode === 0){
-            dispatch(setStatus(status))
-        }
+    const response = await profileAPI.updateStatus(status);
+    if(response.data.resultCode === 0){
+        dispatch(setStatus(status))
+    }
 }
 
 export const savePhoto = (file) => async(dispatch) => {
-    const data = await profileAPI.savePhoto(file);
-    if(data.resultCode === 0){
-        dispatch(savePhotoSuccess(data.data.photos))
+    const response = await profileAPI.savePhoto(file);
+    if(response.data.resultCode === 0){
+        dispatch(savePhotoSuccess(response.data.data.photos))
+    }
+}
+
+export const saveProfileData = (profileFormData) => async(dispatch, getState) => {
+    const userId = getState().auth.id;
+    const response = await profileAPI.saveProfileData(profileFormData);
+
+    if(response.data.resultCode === 0){
+        dispatch(getUserProfile(userId));
+    }else{
+        let messageError = response.data.messages.length > 0 ? response.data.messages[0] : "Some error"
+        dispatch(stopSubmit("profile-data", {_error: messageError}));
+        return Promise.reject(response.data.messages[0]);
     }
 }
 

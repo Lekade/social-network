@@ -20,13 +20,13 @@ export const userAPI = {
 }
 export const profileAPI = {
     getProfile (profileId) {
-        return instans.get(`profile/` + profileId ).then( response => response.data)
+        return instans.get(`profile/` + profileId )
     },
     getStatus (userId) {
-        return instans.get(`profile/status/` + userId ).then( response => response.data)
+        return instans.get(`profile/status/` + userId )
     },
     updateStatus (status) {
-        return instans.put(`profile/status`, {status} ).then( response => response.data)
+        return instans.put(`profile/status`, {status} )
     },
     savePhoto (photoFile) {
         const formData = new FormData();
@@ -35,8 +35,11 @@ export const profileAPI = {
             headers:{
                 'Content-Type': 'multipart/form-data'
             }
-        } ).then( response => response.data)
-    }
+        } )
+    },
+    saveProfileData (profileFormData) {
+        return instans.put(`profile`, profileFormData )
+    },
 }
 
 export const authAPI ={

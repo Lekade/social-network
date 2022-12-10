@@ -8,7 +8,7 @@ import {Textarea} from "../../common/FormsControl/FormsControl";
 const MyPosts = ({posts, addPost}) =>{
 
     let PostsElement = posts.map(
-        p => <Post message={p.message} likesCount={p.likesCount}/>
+        p => <Post key={p.id} message={p.message} likesCount={p.likesCount}/>
     );
 
     let onSubmit = (value) => {

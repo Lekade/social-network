@@ -27,3 +27,10 @@
     display:flex;
     width:100%;
 }
+
+.commonError{
+    padding: 7px;
+    border: solid 1px #ff0000;
+    color:red;
+
+}
