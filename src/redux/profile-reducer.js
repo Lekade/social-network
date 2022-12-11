@@ -82,9 +82,11 @@ export const saveProfileData = (profileFormData) => async(dispatch, getState) =>
     if(response.data.resultCode === 0){
         dispatch(getUserProfile(userId));
     }else{
-        let messageError = response.data.messages.length > 0 ? response.data.messages[0] : "Some error"
-        dispatch(stopSubmit("profile-data", {_error: messageError}));
-        return Promise.reject(response.data.messages[0]);
+        const messageError = response.data.messages[0];
+        const inputName = messageError.slice(messageError.indexOf(">") + 1, messageError.indexOf(")"))
+        const inputNameValid = inputName[0].toLowerCase() + inputName.substring(1)
+        dispatch(stopSubmit("profile-data", {"contacts": {[inputNameValid]: messageError}}));
+        return Promise.reject(messageError);
     }
 }
 

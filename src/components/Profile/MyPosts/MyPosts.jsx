@@ -1,4 +1,4 @@
-import React, {createRef} from 'react';
+import React from 'react';
 import style from './MyPosts.module.css'
 import Post from "./Post/Post";
 import {Field, reduxForm} from "redux-form";
