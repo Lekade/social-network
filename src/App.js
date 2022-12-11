@@ -50,6 +50,8 @@ class App extends React.Component{
 
                                 <Route path='/login/*' element={<LoginContainer/>}/>
 
+                                <Route path='*' element={<div>404 NOT FOUND</div>}/>
+
                             </Routes>
                          </Suspense>
                     </main>
