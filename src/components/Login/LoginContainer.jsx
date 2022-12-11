@@ -9,10 +9,11 @@ const LoginContainer = (props) => {
         props.userLogin(formData)
     }
 
-    return <Login onSubmit={onSubmit} authUser={props.authUser}/>
+    return <Login onSubmit={onSubmit} authUser={props.authUser} captchaUrl={props.captchaUrl}/>
 }
 let mapStateToProps = (state) => ({
-    authUser:state.auth.authUser
+    authUser:state.auth.authUser,
+    captchaUrl:state.auth.captchaUrl
 })
 
 export default compose(connect(mapStateToProps, {userLogin}))(LoginContainer);

@@ -1,30 +1,32 @@
 import React from "react"
-import {Field, reduxForm} from "redux-form";
+import {reduxForm} from "redux-form";
 import {createField, Input} from "../common/FormsControl/FormsControl";
 import {required} from "../../utils/validators/validators";
-import {Navigate, NavLink} from "react-router-dom";
+import {Navigate} from "react-router-dom";
 import style from "./Login.module.css"
 
-const Login = (props) => {
+const Login = ({authUser, onSubmit, captchaUrl}) => {
 
     return <div>
         <h1>Login</h1>
-        {props.authUser ? <Navigate to="/profile/26716"/> : <LoginReduxForm onSubmit={props.onSubmit} />}
+        {authUser ? <Navigate to="/profile/" /> : <LoginReduxForm onSubmit={onSubmit} captchaUrl={captchaUrl} />}
 
     </div>
 }
 
-const LoginForm = (props) => {
+const LoginForm = ({handleSubmit, error, captchaUrl}) => {
     return (
-
-          <form onSubmit={props.handleSubmit}>
+          <form onSubmit={handleSubmit}>
                 {createField("Email", "email", Input, [required])}
                 {createField("Password", "password", Input, [required], {type:"password"})}
                 {createField(null, "rememberMe", Input, [], {type:"checkbox"}, "remember me")}
 
-              { props.error &&
+                {captchaUrl && <img src={captchaUrl} alt="captcha"/>}
+                {captchaUrl && createField("Captcha", "captcha", Input, [required])}
+
+              { error &&
                   <div className={style.commonError}>
-                      {props.error}
+                      {error}
                   </div>
               }
 

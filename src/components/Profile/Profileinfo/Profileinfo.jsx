@@ -31,7 +31,7 @@ const Profileinfo = ({profileData,  status, updateStatus, idOwner, savePhoto, sa
                     <img className={style.photoUser} src={profileData.photos.large} alt="photo"/>
                     {idOwner && <input type={"file"} onChange={changePhoto}/>}
                     <ProfileStatus status={status} updateStatus={updateStatus}/>
-                    <button onClick={() => setEditeMode(true)}>Edit profile</button>
+                    {idOwner && <button onClick={() => setEditeMode(true)}>Edit profile</button>}
                     {editeMode ? <ProfileDataReduxForm initialValues={profileData} profileData={profileData} onSubmit={onSubmit}/> : <ProfileData profileData={profileData}/>}
                 </div>
             </div>

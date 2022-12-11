@@ -46,10 +46,17 @@ export const authAPI ={
     me () {
         return instans.get(`auth/me`).then(response => response.data)
     },
-    loginMe (email, password, rememberMe) {
-        return instans.post(`auth/login`, {email, password, rememberMe}).then(response => response.data)
+    loginMe (email, password, rememberMe, captcha) {
+        debugger
+        return instans.post(`auth/login`, {email, password, rememberMe, captcha}).then(response => response.data)
     },
     logout(){
         return instans.delete(`auth/login`).then(response => response.data)
+    }
+}
+
+export const securityAPI ={
+    getCaptchaUrl (){
+        return instans.get(`security/get-captcha-url`)
     }
 }
