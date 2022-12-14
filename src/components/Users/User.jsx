@@ -10,9 +10,8 @@ const User = ({user, expectationFollowedUsersId, unFollow, follow}) => {
             followed(user.id)
         }}>{text}</button>}
 
-
 return(
-    <div key={user.id} className={style.userItom}>
+    <div className={style.userItom}>
         <div className={style.userPhoto}>
             <NavLink to={`/profile/` + user.id}>
                 <img src={user.photos.small !== null ? user.photos.small : usersPhoto} alt=""/>

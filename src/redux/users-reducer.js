@@ -54,7 +54,7 @@ const usersReducer = (state = initialState, action) => {
                 expectationFollowedUsersId:
                 action.expectation ?
                 [...state.expectationFollowedUsersId, action.userId]
-                : state.expectationFollowedUsersId.filter(userId => userId != action.userId)
+                : state.expectationFollowedUsersId.filter(userId => userId !== action.userId)
             }
         default:
              return state;
@@ -64,7 +64,7 @@ const usersReducer = (state = initialState, action) => {
 const followedUser = async (id, apiMethod, actionCreater, dispatch) => {
     dispatch(setExpectationFollowed(true, id))
     const data = await apiMethod(id)
-    if(data.resultCode == 0){dispatch(actionCreater(id))}
+    if(data.resultCode === 0){dispatch(actionCreater(id))}
     dispatch(setExpectationFollowed(false, id))
 }
 

@@ -8,7 +8,7 @@ const Users = ({currentPage, changePageNumber, totalUsersCount, pageSize, ...pro
         return <div className={style.usersContainer}>
             <Paginator currentPage={currentPage} changePageNumber={changePageNumber} totalItomsCount={totalUsersCount} pageSize={pageSize}/>
 
-            { props.users.map( u => <User user={u}
+            { props.users.map( u => <User user={u} key={u.id}
                      expectationFollowedUsersId={props.expectationFollowedUsersId}
                      unFollow={props.unFollow}
                      follow={props.follow}/> )
