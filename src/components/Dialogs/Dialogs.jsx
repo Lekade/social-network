@@ -1,45 +1,61 @@
-import React from 'react';
-import s from './Dialogs.module.css'
+import React, {useState} from 'react';
+import style from './Dialogs.module.css'
 import Dialog from "./Dialog/Dialog";
 import Message from "./Message/Message";
-import {Field, reduxForm} from "redux-form";
-import {createField, Textarea} from "../common/FormsControl/FormsControl";
 import {maxLengthCreator, required} from "../../utils/validators/validators";
+import {createField, Textarea} from "../common/FormsControl/FormsControl";
+import {reduxForm} from "redux-form";
+import imageUser from "../../assecs/images/user.png"
 
 
 const Dialogs = ({dialogsPage, ...props}) => {
-    let DialogsElement = dialogsPage.dialogs.map(
-        n => <Dialog name={n.name} key={n.id} id={n.id}/>
-    );
 
-    let MessageElement = dialogsPage.messages.map(
+    const [openMessages, setOpenMessages] = useState(false);
+    const itom = "dialog_" + [dialogsPage.dialogId]
+
+    let DialogsElement = dialogsPage.dialogs.map(
+        n => <Dialog name={n.name} key={n.id} id={n.id} dialogsPage={dialogsPage} setOpenMessages={setOpenMessages}  setDialog={props.setDialog}/>
+    );
+    let MessageElement = dialogsPage.messages[itom].map(
         m => <Message message={m.message} key={m.id} />
     );
 
     return (
-        <div className={s.dialogs}>
-            <h2>DIALOGS</h2>
+        <div className={style.dialogs}>
 
-            <div className={s.all_chats}>
+
+            {openMessages
+                ? <div className={style.chat}>
+
+                    <div className={style.headerChat}>
+                        <button onClick={ () => setOpenMessages(false)} className={style.buttonBack}>Back</button>
+                        <div>{ dialogsPage.dialogs[dialogsPage.dialogId].name}</div>
+                        <img src={imageUser} alt="imageUser"/>
+                    </div>
+                    <div className={style.messageBlock}>
+                        <div className={style.messagesElements}>
+                            {MessageElement}
+                        </div>
+                        <DialogReduxForm onSubmit={props.addNewMessage} />
+                    </div>
+                </div>
+                : <div className={style.allChats}>
+                    <h2>DIALOGS</h2>
                 {DialogsElement}
-            </div>
-
-            <div className={s.chat}>
-                {MessageElement}
-                <DialogReduxForm onSubmit={props.addNewMessage}/>
-            </div>
+                </div>}
         </div>
     );
 }
 
-const maxLength = maxLengthCreator(30);
+const maxLength = maxLengthCreator(500);
 
 const DialogForm = (props) => {
+
     return(
         <form onSubmit={props.handleSubmit}>
             {createField("Message", "newMessage", Textarea, [required, maxLength])}
             <div>
-                <button>Send</button>
+                <button className={style.btnElement}>Send</button>
             </div>
         </form>
     )

@@ -4,3 +4,64 @@
     color:red;
 
 }
+
+.loginForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height:88vh;
+    padding:20px;
+    background-color: #fff;
+    border: solid 1px #DCE1E6;
+    border-radius: 15px;
+}
+
+.inputGrup{
+    width:100%;
+    max-width:700px;
+    margin:0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.inputGrup h1{
+    display: inline;
+    margin:0 auto 30px;
+    font-size: 20px;
+}
+
+.lockImage{
+    width:100px;
+    height:100px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin:0 auto 20px;
+    background-color: #003023;
+    border-radius: 50%;
+}
+
+.lockImage img{
+    width:40px;
+    height:40px;
+}
+
+.labelCheckbox{
+    display:flex;
+}
+
+.labelCheckbox input[type='checkbox']{
+    margin-right: 15px;
+}
+
+button.submiteButton{
+    display:block;
+    width:100%;
+    padding: 16px;
+    border:none;
+    border-radius: 5px;
+    background-color: #252424;
+    color:#fff;
+}

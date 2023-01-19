@@ -4,9 +4,10 @@ import {getStatus, getUserProfile, savePhoto, saveProfileData, updateStatus} fro
 import Profile from "./Profile";
 import {useLocation, useNavigate, useParams} from 'react-router-dom'
 import {compose} from "redux";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {getId, getProfileData, getstatus} from "../../redux/profile-selectors";
 
 class ProfileContainer extends React.Component{
-
 
     userInitialization = () => {
         let profileId = this.props.router.params.userId
@@ -39,9 +40,9 @@ class ProfileContainer extends React.Component{
 }
 
 let mapStateToProps = (state) => ({
-        profileData: state.profilePage.profileData,
-        status:state.profilePage.status,
-        id: state.auth.id
+        profileData: getProfileData(state),
+        status: getstatus(state),
+        id: getId(state)
 })
 
 let withRouter = (Component) => {
@@ -56,6 +57,7 @@ let withRouter = (Component) => {
 
 export default compose(
     connect(mapStateToProps, {getUserProfile, getStatus, updateStatus, savePhoto, saveProfileData}),
+    withAuthRedirect,
     withRouter)(ProfileContainer)
 
 

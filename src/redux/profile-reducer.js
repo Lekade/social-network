@@ -1,36 +1,56 @@
 import {profileAPI} from "../api/api";
 import {stopSubmit} from "redux-form";
+import {updateObjectInArray} from "../utils/object-helpers";
 
-const ADD_POST = 'ADD-POST';
-const SET_USER_PROFILE = 'SET_USER_PROFILE';
-const SET_STATUS = 'SET_STATUS';
-const SAVE_PHOTO_SUCCESS = 'SAVE_PHOTO_SUCCESS';
+const ADD_POST = 'network/profile/ADD-POST';
+const ADD_LIKE_POST = 'network/profile/ADD_LIKE_POST';
+const REMOVE_LIKE_POST = 'network/profile/REMOVE_LIKE_POST';
+const SET_USER_PROFILE = 'network/profile/SET_USER_PROFILE';
+const SET_STATUS = 'network/profile/SET_STATUS';
+const SAVE_PHOTO_SUCCESS = 'network/profile/SAVE_PHOTO_SUCCESS';
+const SET_MY_PROFILE = 'network/profile/SET_MY_PROFILE';
 
 let initialState = {
     posts:[
-        {id: 1, message:'Hi. how are you?', likesCount:1 },
-        {id: 2, message:"It's my first post", likesCount:5 },
-        {id: 3, message:'ok', likesCount:12 }
+        {id: 1, message:'Hi. how are you?', likesCount:1, myLike:false },
+        {id: 2, message:"It's my first post", likesCount:5, myLike:false },
+        {id: 3, message:'ok', likesCount:12, myLike:false }
     ],
     newPostText:'it-camasutra.com',
     profileData: null,
+    myProfileData:null,
     status: 'mi status'
 };
 
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POST:
+            let newId = state.posts[state.posts.length - 1].id + 1
             let Post = {
-                id:4, message: action.newPost, likesCount:0
+                id:newId, message: action.newPost, likesCount:0, myLike:false
             };
             return {
                 ...state,
                 posts: [...state.posts, Post]
 
             };
+        case ADD_LIKE_POST:
+            return {
+                ...state,
+                posts: updateObjectInArray(state.posts, action.postId, "id", {likesCount:state.posts[action.postId - 1].likesCount + 1, myLike:true})
+            };
+        case REMOVE_LIKE_POST:
+            return {
+                ...state,
+                posts: updateObjectInArray(state.posts, action.postId, "id", {likesCount:state.posts[action.postId - 1].likesCount - 1, myLike:false})
+            }
         case SET_USER_PROFILE:
             return {
                 ...state, profileData: action.profileData
+            };
+        case SET_MY_PROFILE:
+            return {
+                ...state, myProfileData: action.myProfileData
             };
         case SET_STATUS:
             return {
@@ -47,13 +67,19 @@ const profileReducer = (state = initialState, action) => {
 }
 
 export const addPost = (newPost) => ({type:ADD_POST, newPost})
+export const addLikePost =(postId) => ({type:ADD_LIKE_POST, postId})
+export const removeLikePost =(postId) => ({type:REMOVE_LIKE_POST, postId})
 export const setUserProfile = (profileData) => ({type:SET_USER_PROFILE, profileData})
+export const setMyProfile = (myProfileData) => ({type:SET_MY_PROFILE, myProfileData})
 export const setStatus = (status) => ({type:SET_STATUS, status})
 export const savePhotoSuccess = (photos) => ({type:SAVE_PHOTO_SUCCESS, photos})
 
-export const getUserProfile = (profileId) => async(dispatch) => {
+export const getUserProfile = (profileId) => async(dispatch, getState) => {
     const response = await profileAPI.getProfile(profileId);
     dispatch(setUserProfile(response.data));
+    if(profileId === getState().auth.id){
+        dispatch(setMyProfile(response.data))
+    }
 }
 
 export const getStatus = (userId) => async(dispatch) => {
@@ -73,6 +99,12 @@ export const savePhoto = (file) => async(dispatch) => {
     if(response.data.resultCode === 0){
         dispatch(savePhotoSuccess(response.data.data.photos))
     }
+}
+
+
+export const getMyProfileData = () => async(dispatch, getState) => {
+    const myId = getState().auth.id;
+    dispatch(getUserProfile(myId));
 }
 
 export const saveProfileData = (profileFormData) => async(dispatch, getState) => {

@@ -1,13 +1,13 @@
 import {userAPI} from "../api/api";
 import {updateObjectInArray} from "../utils/object-helpers";
 
-const FOLLOW = 'FOLLOW';
-const UNFOLLOW = ' UNFOLLOW';
-const SET_USERS = 'SET_USERS';
-const SET_PAGE_NUMBER = 'SET_PAGE_NUMBER';
-const SET_USER_COUNT = 'SET_USER_COUNT';
-const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
-const EXPECTATION_FOLLOWED = 'EXPECTATION_FOLLOWED';
+const FOLLOW = 'network/users/FOLLOW';
+const UNFOLLOW = 'network/users/UNFOLLOW';
+const SET_USERS = 'network/users/SET_USERS';
+const SET_PAGE_NUMBER = 'network/users/SET_PAGE_NUMBER';
+const SET_USER_COUNT = 'network/users/SET_USER_COUNT';
+const SET_TOTAL_USERS_COUNT = 'network/users/SET_TOTAL_USERS_COUNT';
+const EXPECTATION_FOLLOWED = 'network/users/EXPECTATION_FOLLOWED';
 
 
 let initialState = {
@@ -27,6 +27,7 @@ const usersReducer = (state = initialState, action) => {
                 ...state,
                 users: updateObjectInArray(state.users, action.userId, "id", {followed:true})
                 }
+
         case   UNFOLLOW:
             return {
                 ...state,

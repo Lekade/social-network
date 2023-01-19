@@ -1,9 +1,11 @@
 import React from "react";
-import loding from "../../../assecs/images/loading_1.webp";
+import loding from "../../../assecs/images/loading.gif";
+import style from "./Preloader.module.css"
+
 
 const Preloader = (props) => {
-    return <div>
-        {props.isFetching === true ? <img alt="preloader" src={loding} /> : null }
+    return <div className={style.preloader}>
+        {props.isFetching === true ? <img className={style.preloaderImg} alt="preloader" src={loding} /> : null }
     </div>
 }
 

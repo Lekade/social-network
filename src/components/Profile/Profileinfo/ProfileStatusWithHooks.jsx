@@ -23,10 +23,9 @@ const ProfileStatus = (props) =>{
     }
 
 
-    return <div className={style.statusBlock}>
-        <div>Status :</div>
-        {!editMode && <div> <span className={style.status} onClick={enableEditMode}>{status || 'The status is missing'}</span></div>}
-        {editMode && <div><input className={style.statusInput} autoFocus={true} value={status} onChange={onChangeStatus} onBlur={disabledEditMode} type="text"/></div>}
+    return <div className={style.statusBlock}  onClick={enableEditMode}>
+        {!editMode && <div className={style.status}>{status || 'The status is missing'}</div>}
+        {editMode && <input className={style.statusInput} autoFocus={true} value={status} onChange={onChangeStatus} onBlur={disabledEditMode} type="text"/>}
     </div>
 
 }

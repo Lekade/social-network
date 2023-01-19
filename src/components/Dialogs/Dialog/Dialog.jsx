@@ -1,14 +1,19 @@
 import React from 'react';
-import s from './Dialog.module.css'
+import style from './Dialog.module.css'
 import {NavLink} from "react-router-dom";
-
+import imageUser from "../../../assecs/images/user.png"
 
 const Dialog = (props) => {
-  return(
 
-        <NavLink to={"/dialogs/" + props.id}  className={s.itom}>
-            <div className={s.indicator}></div>
-            <div className={s.nickname}>{props.name}</div>
+    const functionClik = () =>{
+        props.setOpenMessages(true);
+        props.setDialog(props.id);
+    }
+
+  return(
+        <NavLink onClick={() => {functionClik()}} to={"/dialogs/" + props.id}  className={style.itom}>
+            <div><img className={style.imageUser} src={imageUser} alt="imageUser"/></div>
+            <div className={style.nickname}>{props.name}</div>
         </NavLink>
   );
 }

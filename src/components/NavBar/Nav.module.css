@@ -1,9 +1,14 @@
 .nav{
-  grid-area:n;
-  background-color:#7481F8;
+  width:200px;
   font-size: 25px;
-  padding: 30px;
-  border-radius: 20px;
+  padding: 80px 15px 30px;
+  position:relative;
+
+}
+
+.nav ul{
+  position:fixed;
+  top:80px;
 }
 
 .nav li{
@@ -11,8 +16,31 @@
 }
 
 .nav a{
+  display:block;
   text-decoration: none;
-  color: #fff;
-  font-size: 25px;
+  color: #000;
+  font-size: 22px;
+  border-radius: 5px;
+  padding:3px 20px 0 3px;
 }
 
+.nav a:hover{
+  background-color:#E3E4E6;
+}
+
+.nav ul li a img{
+  width:20px;
+  height:20px;
+}
+
+@media (max-width:660px){
+
+  .nav ul{
+    position:static;
+    top:auto;
+  }
+
+  .nav a:hover{
+    background-color:transparent;
+  }
+}

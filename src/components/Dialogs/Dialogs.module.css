@@ -1,34 +1,107 @@
 .dialogs{
-    display:grid;
-    grid-template-columns:1fr 1fr 1fr;
-    grid-gap:20px;
+    width:100%;
+    background-color:#fff;
+    border-radius: 20px;
+    overflow: hidden;
+    padding-bottom: 30px;
+    border: solid 1px #DCE1E6;
 }
 .dialogs h2{
-    grid-column-start: 1;
-    grid-column-end:4;
-
-    font-size:30px;
-    color:#ffffff;
+    font-size:20px;
+    color:#000;
     margin-top:20px;
     margin-left:20px;
     margin-bottom:30px;
-
 }
 
-.all_chats{
-    grid-column-start:1;
-    grid-column-end:2;
-    background-color:#ffffff;
-    border-radius:20px;
-    overflow: hidden;
-}
+.allChats{
 
+}
 
 .chat{
-    grid-column-start:2;
-    grid-column-end:4;
+    display: flex;
+    flex-direction: column;
     background-color:#ffffff;
     border-radius:20px;
-    padding:25px;
+}
+.headerChat{
+    display: flex;
+    justify-content: space-between;
+    padding-right:25px;
 }
 
+.headerChat img{
+    display: block;
+    width:40px;
+    height:40px;
+    border-radius: 50%;
+    margin-top:15px;
+}
+
+.headerChat div{
+    margin-top:15px;
+}
+
+button.buttonBack{
+    height:60px;
+    padding: 0 40px 0 50px;
+    position:relative;
+    border:none;
+    background: linear-gradient(90deg, rgba(250,250,250,1) 70%, rgba(250,250,250,1) 70%, rgba(255,255,255,0) 100%);
+    transition:0.6s;
+    cursor: pointer;
+}
+
+button.buttonBack:hover{
+    background: linear-gradient(90deg, rgba(240,240,240,1) 70%, rgba(240,240,240,1) 70%, rgba(255,255,255,0) 100%);
+    transition:0.6s;
+}
+
+.buttonBack:before{
+    content:"";
+    width:17px;
+    height:2px;
+    position:absolute;
+    bottom:24px;
+    left:18px;
+    transform: rotate(35deg);
+    background-color: #575656;
+    color:#575656;
+}
+
+.buttonBack:after{
+    content:"";
+    width:17px;
+    height:2px;
+    position:absolute;
+    top:24px;
+    left:18px;
+    transform: rotate(-35deg);
+    background-color: #575656;
+    color:#575656
+}
+
+.messageBlock{
+    padding:30px;
+}
+
+.messagesElements{
+    padding-bottom: 30px;
+}
+
+button.btnElement{
+    padding:10px 20px;
+    display:block;
+    background-color:#004D40;
+    color:#fff;
+    margin:0 0 10px 0;
+    cursor: pointer;
+    transition:0.3s;
+    border:none;
+    border-radius: 5px;
+}
+
+button.btnElement:hover{
+    transition:0.5s;
+    background-color:#003023;
+}

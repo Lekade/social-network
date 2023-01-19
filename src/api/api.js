@@ -47,7 +47,6 @@ export const authAPI ={
         return instans.get(`auth/me`).then(response => response.data)
     },
     loginMe (email, password, rememberMe, captcha) {
-        debugger
         return instans.post(`auth/login`, {email, password, rememberMe, captcha}).then(response => response.data)
     },
     logout(){

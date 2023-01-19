@@ -1,8 +1,78 @@
+.formControl{
+    margin-bottom: 30px;
+}
+
 .formControl.error textarea,
-.formControl.error input{
+.formControl.error textarea:focus,
+.formControl.error textarea:hover,
+.formControl.error input,
+.formControl.error input:focus,
+.formControl.error input:hover{
     border: solid red 2px ;
 }
 
 .formControl.error span{
     color: red;
+}
+
+.inputBlock{
+    position: relative;
+}
+.inputElement textarea,
+.inputElement input {
+    width:100%;
+    border:solid 1.5px #C4C4C4;
+    border-radius: 5px;
+    background:none;
+    padding:1rem;
+    font-size: 1rem;
+    color:#000;
+    transition:150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.inputElement input[type='checkbox']{
+    width:auto;
+}
+.inputElement textarea:hover,
+.inputElement input:hover{
+    border: 1.5px solid #000;
+    transition:0.4ms;
+}
+
+.placeholder{
+    position:absolute;
+    left:16px;
+    color:#A8A8A8;
+    pointer-events: none;
+    transform:translateY(1rem);
+    transition:150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.inputElement textarea:focus,
+.inputElement input:focus{
+    outline:none;
+    border: 2px solid #003023;
+}
+
+.inputBlock:focus-within .placeholder{
+    transform:translateY(-50%) scale(0.8);
+    background-color:#fff;
+    padding:0 10px;
+    color:#004D40;
+}
+textarea::placeholder,
+input::placeholder{
+    color:transparent;
+    font-size: 0;
+}
+
+.placeholderTop .placeholder{
+    transform:translateY(-50%) scale(0.8);
+    background-color:#fff;
+    padding:0 10px;
+    color:#000;
+}
+
+.formControl.error .placeholder{
+    color:red;
 }

@@ -1,16 +1,13 @@
 import React from 'react';
-import s from './Message.module.css'
+import style from './Message.module.css'
 
-const Message = (props) => {
+const Message = ({message}) => {
 
-    return (
-        <div className={s.interlocutor}>
-            <img src="" alt=""/>
-            <div className={s.message}>
-                {props.message}
+    return  <div>
+                <p className={style.message}>
+                    {message}
+                </p>
             </div>
-        </div>
-)
 }
 
 export default Message;

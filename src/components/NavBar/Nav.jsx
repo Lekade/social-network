@@ -1,17 +1,17 @@
 import React from 'react';
-import s from './Nav.module.css'
+import style from './Nav.module.css'
 import {NavLink} from "react-router-dom";
+import profileImg from "./../../assecs/images/profile.png"
+import usersImg from "./../../assecs/images/users.png"
+import messagesImg from "./../../assecs/images/messages.png"
 
 const Navbar = () =>{
 	return(
-      <nav className={s.nav}>
+      <nav className={style.nav}>
         <ul>
-          <li><NavLink to="/profile" >Profile</NavLink></li>
-          <li><NavLink to="/dialogs" >Messages</NavLink></li>
-          <li><NavLink to="/news">News</NavLink></li>
-          <li><NavLink to="/music">Music</NavLink></li>
-          <li><NavLink to="/users">Find users</NavLink></li>
-          <li><NavLink to="/settings">Settings</NavLink></li>
+          <li><NavLink to="/profile" ><img src={profileImg}/> Profile</NavLink></li>
+          <li><NavLink to="/dialogs" ><img src={messagesImg}/> Messages</NavLink></li>
+          <li><NavLink to="/users"><img src={usersImg}/> Find users</NavLink></li>
         </ul>
       </nav>
 	)

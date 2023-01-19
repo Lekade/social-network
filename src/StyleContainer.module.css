@@ -1,0 +1,44 @@
+.container{
+    width:100%;
+    max-width:1200px;
+    margin:0 auto;
+    padding:0 10px;
+
+    display:flex;
+    justify-content: space-between;
+}
+
+@media (max-width:660px){
+    .container{
+        flex-direction: column-reverse;
+    }
+
+    .container nav{
+        width:100%;
+        padding:17px 0;
+        background-color: #252424;
+        position:fixed;
+        bottom:0;
+        left:0;
+        z-index: 10;
+    }
+
+    .container nav ul{
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .container nav a{
+        font-size: 18px;
+        color:#fff;
+    }
+
+
+    .container nav ul li a img{
+        display: none;
+    }
+
+    header .container{
+        flex-direction: row;
+    }
+}

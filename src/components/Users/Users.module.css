@@ -1,30 +1,49 @@
 .usersContainer{
-    width:80%;
-    margin: 0 auto;
+    width:100%;
+    background-color:#fff;
+    margin: 0 auto 20px;
+    padding:20px;
+    border-radius: 20px;
 }
+
+.userItom:last-child{
+    border-bottom:solid 0  #E0E0E0;
+}
+
 .userItom{
     display:flex;
+    justify-content: space-between;
     background-color:#fff;
-    margin:20px auto 10px;
-    padding:15px;
-}
-.userPhoto{
-    width:30%;
+    padding:15px 0;
+    border-bottom:solid 1px #E0E0E0;
 }
 
-.userPhoto img{
+.userInfo{
+    display: flex;
+}
+
+.userInfo img{
     width:100px;
     height:100px;
-}
-.userInfo{
-    width:70%;
-    display:flex;
+    margin-right:30px;
+    border-radius: 50%;
 }
 
-.userInfo .userIngoInner{
-    width:50%
+
+
+button.btnElement{
+    padding:10px 20px;
+    display:block;
+    background-color:#004D40;
+    color:#fff;
+    margin:0 0 10px auto;
+    cursor: pointer;
+    transition:0.3s;
+    border:none;
+    border-radius: 5px;
 }
 
-.userInfo .userIngoInner div{
-    margin-bototm:30px;
+button.btnElement:hover{
+    transition:0.5s;
+    background-color:#003023;
 }

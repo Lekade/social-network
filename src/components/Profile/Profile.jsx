@@ -12,7 +12,9 @@ const Profile = (props) =>{
                          idOwner={props.idOwner}
                          savePhoto={props.savePhoto}
                          saveProfileData={props.saveProfileData}/>
-            <MyPostsContainer/>
+            <MyPostsContainer
+                         idOwner={props.idOwner}
+            />
         </div>
     )
 }

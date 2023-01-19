@@ -25,3 +25,15 @@
     border:none;
     cursor: pointer;
 }
+
+@media (max-width:660px){
+    .pagination span{
+        padding: 2px 3px;
+        margin:2px;
+
+    }
+
+    .pagination{
+        font-size: 14px;
+    }
+}

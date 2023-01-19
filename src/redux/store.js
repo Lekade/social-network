@@ -1,5 +1,4 @@
 import dialogReducer from "./dialogs-reducer";
-import sidebarReducer from "./sidebar-reducer";
 import profileReducer from "./profile-reducer";
 
 
@@ -60,8 +59,6 @@ let store ={
 
 
 }
-
-
 
 export default store;
 window.store = store;
